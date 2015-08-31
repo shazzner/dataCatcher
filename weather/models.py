@@ -10,6 +10,9 @@ class DataSlice(models.Model):
     local_outside_humid = models.DecimalField(max_digits=3, decimal_places=1)
     local_outside_apparent_temp = models.DecimalField(max_digits=3, decimal_places=1)
 
+    def __unicode__(self):
+        return str(self.capture_time)
+
 # class DataModel(models.Model):
 #     chart = models.ForeignKey(DataChart)
 #     data_start_time = models.DateTimeField(blank=false)

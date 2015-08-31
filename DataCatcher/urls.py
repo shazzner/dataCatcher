@@ -17,5 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^weather/', include('weather.urls', namespace='weather')),
     url(r'^admin/', include(admin.site.urls)),
 ]
