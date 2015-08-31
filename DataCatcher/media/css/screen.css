@@ -1,3 +1,63 @@
-body {
+/* Global Site */
+* {
+  margin: 0;
+}
+html, body {
   background-color: #fff;
+  height: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+  margin: 0 auto -127px;
+}
+
+/* Header */
+#header {
+  width: 100%;
+  height: 117px;
+
+  background: #05abe0; /* Old browsers */
+  background: -moz-linear-gradient(top,  #05abe0 0%, #53cbf1 60%, #87e0fd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#05abe0), color-stop(60%,#53cbf1), color-stop(100%,#87e0fd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #05abe0 0%,#53cbf1 60%,#87e0fd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #05abe0 0%,#53cbf1 60%,#87e0fd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #05abe0 0%,#53cbf1 60%,#87e0fd 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #05abe0 0%,#53cbf1 60%,#87e0fd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05abe0', endColorstr='#87e0fd',GradientType=0 ); /* IE6-9 */
+
+  box-shadow: 0 5px 3px #888888;
+}
+
+#header_content {
+  width: 960px;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+#header_content ul {
+  color: #fff;
+}
+
+/* Footer */
+#footer {
+  position: relative;
+  clear: both;
+  height: 117px;
+  
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,53cbf1+40,05abe0+100 */
+  background: #87e0fd; /* Old browsers */
+  background: -moz-linear-gradient(top,  #87e0fd 0%, #53cbf1 40%, #05abe0 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e0fd), color-stop(40%,#53cbf1), color-stop(100%,#05abe0)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
+
+  box-shadow: 0 -5px 3px #888888;
+}
+#footer_content {
+  width: 960px;
+  margin: 0 auto;
+  padding: 15px 0;
 }

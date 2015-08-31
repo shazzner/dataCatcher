@@ -1,10 +1,14 @@
 {% load staticfiles %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>BiziBox</title>
     <link href="{% static 'css/screen.css' %}" rel="stylesheet" type="text/css" media="screen" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:800,700,400|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -12,6 +16,7 @@
       <div id="header">
         <div id="header_content">
           <ul id="nav">
+            <a href="{% url 'home:index' %}">Home</a>
           </ul>
           <br class="clear">
         </div>
