@@ -1,1 +1,29 @@
-<h1>{% block title %}{% endblock %}</h1>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BiziBox</title>
+    <link href="{% static 'css/screen.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800,700,400|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div id="header_content">
+          <ul id="nav">
+          </ul>
+          <br class="clear">
+        </div>
+      </div>
+      <h1>{% block title %}{% endblock %}</h1>
+    </div>
+    <div id="footer">
+      <div id="footer_content">
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
