@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load base_extras %}
 {% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
@@ -16,15 +17,7 @@
       <div id="header">
         <div id="header-content">
           <div class="container">
-            <nav class="navbar" role="navigation">
-              
-              <ul class="nav navbar-nav">
-                <li><a href="{% url 'home:index' %}">Home</a></li>
-                <li><a href="{% url 'home:index' %}">About</a></li>
-                <li><a href="{% url 'home:index' %}">All Modules</a></li>
-              </ul>
-              
-            </nav>
+            {% show_navbar %}
           </div>
         </div>
       </div>
