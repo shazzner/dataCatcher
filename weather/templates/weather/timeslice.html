@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-12">
+  <h1>Timeslice</h1>
+  {% if range_slices %}
+  <ul>
+    {% for slice in range_slices %}
+    <li>{{ slice.id }}: {{ slice.capture_time }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No slices are available.</p>
+  {% endif %}
+</div>
+{% endblock %}
