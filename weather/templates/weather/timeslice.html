@@ -1,16 +1,82 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<link href="{% static 'css/c3.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
+<script src="{% static 'js/d3.min.js' %}"></script>
+<script src="{% static 'js/c3.min.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 <div class="col-md-12">
   <h1>Timeslice</h1>
+  <div class="well">
+    Here is the current info!
+  </div>
+  <p>Below are samplings of temperature based on the range specified in the url.</p>
   {% if range_slices %}
-  <ul>
-    {% for slice in range_slices %}
-    <li>{{ slice.id }}: {{ slice.capture_time }}</li>
-    {% endfor %}
-  </ul>
+  <h2>Temperature in C</h2>
+  <div id="chart1"></div>
+  <h2>Humidity</h2>
+  <div id="chart2"></div>
   {% else %}
   <p>No slices are available.</p>
   {% endif %}
 </div>
+{% endblock %}
+
+{% block loadscript %}
+<script>
+ $(document).ready(function() {
+     var chart1 = c3.generate({
+         data: {
+             x: 'x',
+             xFormat: '%Y-%m-%d %H:%M',
+             columns: [
+                 {% autoescape off %}
+                 ['x', {{ dateformatted|join:", " }} ],
+                 {% endautoescape %}
+                 ['Current Room Temp', {{ currRoomTemp|join:", " }} ],
+                 ['Outside Temp', {{ outsideTemp|join:", " }} ]
+                 
+             ]
+         },
+         axis: {
+             x: {
+                 type: 'timeseries',
+                 tick: {
+                     format: '%Y-%m-%d %H:%M'
+                 }
+             }
+         },
+         bindto: '#chart1'
+         
+     });
+
+     var chart2 = c3.generate({
+         data: {
+             x: 'x',
+             xFormat: '%Y-%m-%d %H:%M',
+             columns: [
+                 {% autoescape off %}
+                 ['x', {{ dateformatted|join:", " }} ],
+                 {% endautoescape %}
+                 ['Current Room Humidity', {{ currRoomHumidity|join:", "}}],
+                 ['Outside Humidity', {{ outsideHumidity|join:", " }} ]
+                 
+             ]
+         },
+         axis: {
+             x: {
+                 type: 'timeseries',
+                 tick: {
+                     format: '%Y-%m-%d %H:%M'
+                 }
+             }
+         },
+         bindto: '#chart2'
+         
+     });
+ });
+</script>
 {% endblock %}
