@@ -5,13 +5,21 @@
 <link href="{% static 'css/c3.min.css' %}" rel="stylesheet" type="text/css" media="screen" />
 <script src="{% static 'js/d3.min.js' %}"></script>
 <script src="{% static 'js/c3.min.js' %}"></script>
+<script src="{% static 'js/skycons.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="col-md-12">
   <h1>Timeslice</h1>
   <div class="well">
-    Here is the current info!
+    <div class="container">
+      <div class="col-md-2">
+        <canvas id="icon1" width="128" height="128"></canvas>
+      </div>
+      <div class="col-md-10">
+        <p>It is currently: {{ weatherIcon }}</p>
+      </div>
+    </div>
   </div>
   <p>Below are samplings of temperature based on the range specified in the url.</p>
   {% if range_slices %}
@@ -28,6 +36,10 @@
 {% block loadscript %}
 <script>
  $(document).ready(function() {
+     var skycons = new Skycons({"color": "blue"});
+     skycons.add("icon1", "{{ weatherIcon }}");
+     skycons.play();
+     
      var chart1 = c3.generate({
          data: {
              x: 'x',

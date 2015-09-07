@@ -25,6 +25,7 @@ def timeslice(request, styear, stmonth, stday, edyear, edmonth, edday):
     currRoomHumidity = []
     outsideTemp = []
     outsideHumidity = []
+    weatherIcon = 'clear-day'
 
     for slice in range_slices:
         dateformatted.append("'" + slice.capture_time.strftime('%Y-%m-%d %H:%M') + "'")
@@ -32,6 +33,7 @@ def timeslice(request, styear, stmonth, stday, edyear, edmonth, edday):
         currRoomHumidity.append(str(slice.curr_room_humid))
         outsideTemp.append(str(slice.local_outside_temp))
         outsideHumidity.append(str(slice.local_outside_humid))
+        weatherIcon = str(slice.local_outside_icon)
         
     context = {
         'range_slices': range_slices,
@@ -40,6 +42,10 @@ def timeslice(request, styear, stmonth, stday, edyear, edmonth, edday):
         'currRoomHumidity': currRoomHumidity,
         'outsideTemp': outsideTemp,
         'outsideHumidity': outsideHumidity,
+        'weatherIcon': weatherIcon,
     }
         
     return render(request, 'weather/timeslice.html', context)
+
+def today(request):
+    return render(request, 'weather/today.html', context)
