@@ -14,6 +14,8 @@ def detail(request, data_id):
 
 def timeslice(request, styear, stmonth, stday, edyear, edmonth, edday):
     # TODO: TONS of error checking & formatting
+    # TODO: Look into doing smarter lists see: https://docs.djangoproject.com/en/dev/ref/models/querysets/#values-list
+    
     start_date = styear + '-' + stmonth + '-' + stday + ' 00:00'
     start_slice = datetime.datetime.strptime(start_date, '%Y-%m-%d %H:%M')
     end_date = edyear + '-' + edmonth + '-' + edday + ' 23:59'
