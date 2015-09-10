@@ -1,8 +1,13 @@
+{% load base_extras %}
 <nav class="navbar" role="navigation">
-  
+
   <ul class="nav navbar-nav">
     <li><a href="/">Home</a></li>
-    <li><a href="{% url 'home:about' %}">About</a></li>
+    <li class="{% navactive path 'home:about' %}"><a href="{% url 'home:about' %}">About</a></li>
+    <li><a class="{% navactive path 'home:help' %}" href="{% url 'home:help' %}">Help</a></li>
+    <li><a class="{% navactive path 'home:contribute' %}" href="{% url 'home:contribute' %}">Contribute</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a class="{% navactive path 'home:listings' %}" href="{% url 'home:listings' %}">Add Modules</a></li>
   </ul>
   
 </nav>

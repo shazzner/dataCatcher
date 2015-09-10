@@ -80,3 +80,9 @@ html, body {
 .jumbotron {
   background-color: transparent;
 }
+
+/* Navigation */
+.navbar-nav>.active>a {
+  text-decoration: none;
+  background-color: #eee;
+}
