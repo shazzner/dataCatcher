@@ -3,7 +3,7 @@
 {% if latest_data_slices %}
     <ul>
     {% for slice in latest_data_slices %}
-        <li><a href="{% url 'weather:detail' slice.id %}">{{ slice.capture_time }}</a></li>
+      <li><a href="{% url 'weather:detail' slice.id %}">{{ slice.capture_time }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
