@@ -1,12 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
-{% if latest_data_slices %}
-    <ul>
-    {% for slice in latest_data_slices %}
-      <li><a href="{% url 'weather:detail' slice.id %}">{{ slice.capture_time }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No slices are available.</p>
-{% endif %}
+
+    <div class="col-md-12">
+        <h1>Date Listings</h1>
+        <div class="well bg-info">
+            <p>Below are a list of dates, starting with today's date, and continuing on. You can specify your own date range by changing the date in the url, ie: weather/data/2015-09-##/2015-09-##/ replacing the '##' with a number. Make sure to pad it with a zero if it's a single digit, ie: 01 instead of 1. More information can be found in your modules' help documentation.</p>
+        </div>
+        {% if slices %}
+            {% for slice in slices %}
+                <a href="/weather/data/{{ slice }}">
+                    <div class="well bg-success">
+                        {{ slice }}
+                    </div>
+                </a>
+            {% endfor %}
+            
+            <nav>
+                <ul class="pagination">
+                    {% if slices.has_previous %}
+                    <li>
+                        <a href="?page={{ slices.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    
+                    <li><a href="#">Page {{ slices.number }} of {{ slices.paginator.num_pages }}</a></li>
+
+                    {% if slices.has_next %}
+                    <li>
+                        <a href="?page={{ slices.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% else %}
+            <p>No slices are available.</p>
+        {% endif %}
+        
+    </div>
 {% endblock %}
