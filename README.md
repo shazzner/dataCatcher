@@ -18,6 +18,10 @@ Please file bugs/features/help in the issue tracker
 
 ### Look & Feel
 
+* Base
+  * Need to add a footer
+  * Logo
+
 * Homepage
   * Should display updates to modules/app-recommends
   * Display any alerts
