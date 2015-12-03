@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from more_itertools import unique_everseen
 from .models import DataSlice
 
 def _daterange(start_date, end_date):
@@ -97,9 +98,14 @@ def today(request):
     return render(request, 'weather/today.html', context)
 
 def day(request, year, month, day):
+    #date = year + '-' + month + '-' + day
     start_date = year + '-' + month + '-' + day + ' 00:00'
+    #start_slice = datetime.strptime(start_date, '%Y-%m-%d %H:%M')
     end_date = year + '-' + month + '-' + day + ' 23:59'
+    #end_slice = datetime.strptime(start_date, '%Y-%m-%d %H:%M')
+    #range_slices = DataSlice.objects.filter(capture_time__range=(start_slice, end_slice))
     range_slices = DataSlice.objects.filter(capture_time__range=(start_date, end_date))
+    #range_slices = DataSlice.objects.filter(capture_time__exact=datetime.date(year, month, day))
 
     dateformatted = []
     currRoomTemp = []
@@ -115,6 +121,9 @@ def day(request, year, month, day):
         outsideTemp.append(str(slice.local_outside_temp))
         outsideHumidity.append(str(slice.local_outside_humid))
         weatherIcons.append(str(slice.local_outside_icon))
+
+    # This can probably be replaced by a non-library call
+    weatherIcons = list(unique_everseen(weatherIcons))
         
     context = {
         'range_slices': range_slices,

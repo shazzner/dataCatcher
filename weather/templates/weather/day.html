@@ -12,13 +12,18 @@
 <div class="col-md-12">
   <h1>Timeslice</h1>
   <div class="well">
+      <div class="container">
+          <div class="col-md-12">
+              <h2>Throughout the day it was:</h2>
+          </div>
+      </div>
     <div class="container">
-      <div class="col-md-2">
-        
-      </div>
-      <div class="col-md-10">
-        <p>It is currently: {{ weatherIcons }}</p>
-      </div>
+        {% for weather in weatherIcons %}
+            <div class="col-md-2">
+                <p><strong>{{ weather|capfirst }}</strong></p>
+                <canvas id="icon{{ forloop.counter }}" width="128" height="128"></canvas>
+            </div>
+        {% endfor %}
     </div>
   </div>
   <p>Below are samplings of temperature based on the range specified in the url.</p>
@@ -36,9 +41,11 @@
 {% block loadscript %}
 <script>
  $(document).ready(function() {
-     //var skycons = new Skycons({"color": "blue"});
-     //skycons.add("icon1", "{{ weatherIcon }}");
-     //skycons.play();
+   var skycons = new Skycons({"color": "blue"});
+   {% for weather in weatherIcons %}
+   skycons.add("icon{{ forloop.counter }}", "{{ weather }}");
+   {% endfor %}
+   skycons.play();
      
      var chart1 = c3.generate({
          data: {
